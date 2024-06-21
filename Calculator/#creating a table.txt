@@ -1,0 +1,67 @@
+#creating a table
+    cur.execute("""CREATE TABLE profile(
+        first_name text,
+        last_name text,
+        address text,
+        pincode integer,
+        contact_no text
+    )""")
+
+
+#defining function for submit btn
+def submit():
+    #create or connect to a data base
+    data=sqlite3.connect("profile.db")
+
+    #creating a cursor
+    cur=data.cursor()
+
+    #recording the inputs to database
+    cur.execute("INSERT INTO profile VALUES(:f_name,:l_name,:address,:pincode,:contact_no)",
+    {
+        "f_name":f_name.get(),
+        "l_name":l_name.get(),
+        "address":address.get(),
+        "pincode":pincode.get(),
+        "contact_no":contact_no.get()
+    })
+
+    #deleting the text boxes
+    f_name.delete(),
+    l_name.delete(),
+    address.delete(),
+    pincode.delete(),
+    contact_no.delete()
+
+    #message box
+    tkinter.messagebox.showinfo("Status","Your Info have been Saved.")
+
+    #commit changes
+    data.commit()
+
+    #close connection
+    data.close()
+
+
+#create or connect to a data base
+    data=sqlite3.connect("profile.db")
+
+    #creating a cursor
+    cur=data.cursor()
+
+    #recording the inputs to database
+    cur.execute("INSERT INTO profile VALUES(:f_name,:l_name,:address,:pincode,:contact_no)",
+    {
+        "f_name":f_name.get(),
+        "l_name":l_name.get(),
+        "address":address.get(),
+        "pincode":pincode.get(),
+        "contact_no":contact_no.get()
+    })
+
+
+#commit changes
+    data.commit()
+
+    #close connection
+    data.close()
